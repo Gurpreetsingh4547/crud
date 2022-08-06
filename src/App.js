@@ -11,7 +11,7 @@ import View from "./View";
  * @returns node
  */
 const App = () => {
-  // userdata form server
+  // state for storing userDetails that come in response data
   const [userData, setUserData] = useState([]);
 
   // Send request to server to get the data

@@ -91,7 +91,7 @@ const AddNewUserModal = (props) => {
         <Modal.Footer>
           {/* Close modal button */}
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            Cancel
           </Button>
           {/* Add new user button */}
           <Button variant="primary" onClick={handleAddNewUser}>

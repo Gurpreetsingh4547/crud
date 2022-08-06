@@ -16,7 +16,7 @@ const UserList = (props) => {
   const { data, updateData } = props || {};
 
   // Limit state for showing limited data
-  const [limit, setLimit] = useState(10);
+  const [limit, setLimit] = useState(20);
 
   // slice data to show limited record
   const slicedData = data.slice(0, limit);
@@ -27,26 +27,31 @@ const UserList = (props) => {
   };
 
   return (
-    <div className="position-absolute w-100 h-75 overflow-auto">
-      <Table striped bordered hover className="text-center">
-        <thead className="sticky-top bg-light">
+    <div className="position-absoltue d-block mx-4 my-3 mb-5">
+      <Table hover className="table-lg mb-0">
+        <thead className=" bg-secondary bg-opacity-10 fw-normal font-monospace fs-5">
           <tr>
-            <th>Sr. No.</th>
-            <th>Username</th>
-            <th>Date</th>
-            <th>Action</th>
+            <td>S.No</td>
+            <td>USERNAME</td>
+            <td>DATE</td>
+            <td className="text-end">ACTIONS</td>
           </tr>
         </thead>
-        <tbody className="overflow-auto">
+        <tbody
+          className="fs-6"
+          style={{
+            fontFamily: "sans",
+          }}
+        >
           {slicedData.map((item, index) => (
             <tr key={item.id}>
               {/* serial number */}
-              <th scope="row">{index + 1}</th>
+              <td>{index + 1}</td>
               {/* user name */}
               <td>{item.name}</td>
               {/* user joining date */}
               <td>{item.date}</td>
-              <td>
+              <td className="text-end">
                 <DeleteUserModal
                   id={item.id}
                   data={data}
@@ -57,9 +62,12 @@ const UserList = (props) => {
           ))}
         </tbody>
       </Table>
-      <div className="d-flex flex-row justify-content-center sticky-bottom bg-light p-2">
+      <div className="d-flex flex-row justify-content-end fixed-bottom bg-light p-2 ">
         {/* load more data */}
-        <Button className="button button-primary" onClick={handleLimitOfData}>
+        <Button
+          className="button button-primary mx-5"
+          onClick={handleLimitOfData}
+        >
           Load More Data
         </Button>
       </div>

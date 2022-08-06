@@ -52,15 +52,17 @@ const DeleteUserModal = (props) => {
   return (
     <>
       {/* button to open modal */}
-      <Button variant="primary" onClick={() => handleShow(id)}>
-        <RiDeleteBin6Line />
-      </Button>
+      <RiDeleteBin6Line
+        className="fs-5"
+        style={{ cursor: "pointer" }}
+        onClick={() => handleShow(id)}
+      />
 
       <Modal show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
           <Modal.Title>Confirmation</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Do You Really Want to Delete the user</Modal.Body>
+        <Modal.Body>Do You Really Want to Delete the User ?</Modal.Body>
         <Modal.Footer>
           {/* Cancel button */}
           <Button variant="secondary" onClick={handleClose}>
