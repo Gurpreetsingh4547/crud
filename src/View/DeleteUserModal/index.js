@@ -58,7 +58,7 @@ const DeleteUserModal = (props) => {
 
       <Modal show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Confirmation</Modal.Title>
         </Modal.Header>
         <Modal.Body>Do You Really Want to Delete the user</Modal.Body>
         <Modal.Footer>

@@ -7,7 +7,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 /**
- * modal to add new user
+ *  modal to add new user
  * @param {object} props
  * @returns node
  */
@@ -70,7 +70,7 @@ const AddNewUserModal = (props) => {
       {/* modal */}
       <Modal show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Add New User</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {/* Add new user form */}
