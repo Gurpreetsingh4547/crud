@@ -4,6 +4,9 @@ import React from "react";
 import Navbar from "./Navbar";
 import UserList from "./UserList";
 
+// Css
+import "./style.css";
+
 /**
  * Display all my components on screen
  * @param {object} props
@@ -11,11 +14,11 @@ import UserList from "./UserList";
  */
 const View = (props) => {
   // Destructring the props and validate props
-  const { data, updateData } = props || {};
+  const { data, onUpdateData } = props || {};
   return (
     <div>
-      <Navbar data={data} updateData={updateData} />
-      <UserList data={data} updateData={updateData} />
+      <Navbar data={data} onUpdateData={onUpdateData} />
+      <UserList data={data} onUpdateData={onUpdateData} />
     </div>
   );
 };

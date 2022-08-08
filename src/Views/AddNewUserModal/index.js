@@ -1,10 +1,10 @@
-// Packages
 import React, { useState } from "react";
-import axios from "axios";
 
 // React bootstrap Componoents
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
+import { Button, Modal } from "react-bootstrap";
+
+// Api request method to get users list
+import { addNewUser } from "../../services/users";
 
 /**
  *  modal to add new user
@@ -13,19 +13,21 @@ import Modal from "react-bootstrap/Modal";
  */
 const AddNewUserModal = (props) => {
   // Props Desturcturing
-  const { data, updateData } = props || {};
+  const { data, onUpdateData } = props || {};
 
   // user details state, Include : name, date, userid
   const [userDetails, setUserDetails] = useState({
     name: "",
     date: new Date().toLocaleDateString(),
   });
+
+  // modal state for modal show or hide
   const [show, setShow] = useState(false);
 
-  // Close modal method
+  //  Modal close method
   const handleClose = () => setShow(false);
 
-  // Open modal method
+  // Modal Open method
   const handleShow = () => setShow(true);
 
   /**
@@ -47,32 +49,31 @@ const AddNewUserModal = (props) => {
   /**
    * Add new user to database and add update the data state with new data
    */
-  const handleAddNewUser = () => {
-    axios
-      .post("http://localhost:8000/users/", userDetails)
-      .then((res) => {
-        const newUserData = res.data;
-        updateData([...data, newUserData]);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const handleAddNewUser = async () => {
+    const newUserData = await addNewUser(userDetails);
+    if (newUserData) {
+      onUpdateData([...data, newUserData]);
+    }
     setShow(false);
   };
 
   return (
     <>
-      {/* pop modal button */}
-      <Button variant="primary" onClick={handleShow}>
+      {/* Add new user popup modal button */}
+      <Button
+        onClick={handleShow}
+        className="ModalButton outline-none btn btn-primary"
+      >
         Add New User
       </Button>
 
-      {/* modal */}
       <Modal show={show} onHide={handleClose} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>Add New User</Modal.Title>
+        <Modal.Header className="border-0 pb-0">
+          <Modal.Title className="AddNewUserModalTitle">
+            Add New User
+          </Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className="pb-0">
           {/* Add new user form */}
           <form onSubmit={handleFormSubmit}>
             {/* user name input */}
@@ -89,13 +90,22 @@ const AddNewUserModal = (props) => {
           </form>
         </Modal.Body>
         <Modal.Footer>
-          {/* Close modal button */}
-          <Button variant="secondary" onClick={handleClose}>
-            Cancel
-          </Button>
           {/* Add new user button */}
-          <Button variant="primary" onClick={handleAddNewUser}>
+          <Button
+            variant="primary"
+            onClick={handleAddNewUser}
+            className="ModalButton w-25"
+          >
             Save
+          </Button>
+
+          {/* Close modal button */}
+          <Button
+            className=" ModalButtonCancel w-25"
+            variant="secondary"
+            onClick={handleClose}
+          >
+            Cancel
           </Button>
         </Modal.Footer>
       </Modal>

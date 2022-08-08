@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 
-// Components
-import Table from "react-bootstrap/Table";
-
 // React bootstrap components
-import Button from "react-bootstrap/Button";
+import { Table, Button } from "react-bootstrap";
+
+// Components
 import DeleteUserModal from "../DeleteUserModal";
 
 /**
@@ -13,13 +12,10 @@ import DeleteUserModal from "../DeleteUserModal";
  */
 const UserList = (props) => {
   // Destructring the props
-  const { data, updateData } = props || {};
+  const { data, onUpdateData } = props || {};
 
   // Limit state for showing limited data
   const [limit, setLimit] = useState(20);
-
-  // slice data to show limited record
-  const slicedData = data.slice(0, limit);
 
   // update limit by adding 10 to show 10 more records
   const handleLimitOfData = () => {
@@ -28,8 +24,8 @@ const UserList = (props) => {
 
   return (
     <div className="position-absoltue d-block mx-4 my-3 mb-5">
-      <Table hover className="table-lg mb-0">
-        <thead className=" bg-secondary bg-opacity-10 fw-normal font-monospace fs-5">
+      <Table hover className="table-lg">
+        <thead className="userListTableHead fs-6">
           <tr>
             <td>S.No</td>
             <td>USERNAME</td>
@@ -37,13 +33,8 @@ const UserList = (props) => {
             <td className="text-end">ACTIONS</td>
           </tr>
         </thead>
-        <tbody
-          className="fs-6"
-          style={{
-            fontFamily: "sans",
-          }}
-        >
-          {slicedData.map((item, index) => (
+        <tbody className="userListTable">
+          {data.slice(0, limit).map((item, index) => (
             <tr key={item.id}>
               {/* serial number */}
               <td>{index + 1}</td>
@@ -55,17 +46,18 @@ const UserList = (props) => {
                 <DeleteUserModal
                   id={item.id}
                   data={data}
-                  updateData={updateData}
+                  onUpdateData={onUpdateData}
                 />
               </td>
             </tr>
           ))}
         </tbody>
       </Table>
-      <div className="d-flex flex-row justify-content-end fixed-bottom bg-light p-2 ">
+
+      <div className="d-flex justify-content-center  sticky-bottom bg-light p-2 ">
         {/* load more data */}
         <Button
-          className="button button-primary mx-5"
+          className="ModalButton button button-primary"
           onClick={handleLimitOfData}
         >
           Load More Data

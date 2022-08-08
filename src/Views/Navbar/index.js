@@ -16,18 +16,20 @@ import AddNewUserModal from "../AddNewUserModal";
  * @returns node
  */
 const NavBar = (props) => {
-  const { data, updateData } = props || {};
+  const { data, onUpdateData } = props || {};
   return (
     <div className="sticky-top bg-light border">
-      <Navbar className="">
-        <Navbar.Brand className="fs-2">
-          <MdKeyboardArrowLeft className="fs-1 mb-1" />
+      <Navbar className="w-100">
+        {/* Logo */}
+        <Navbar.Brand className="fs-4">
+          <MdKeyboardArrowLeft className="text-secondary fs-3 mb-1 mx-1" />
           USERLIST
         </Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end mx-3">
           <Navbar.Text>
-            <AddNewUserModal data={data} updateData={updateData} />
+            {/* Add new user Modal */}
+            <AddNewUserModal data={data} onUpdateData={onUpdateData} />
           </Navbar.Text>
         </Navbar.Collapse>
       </Navbar>

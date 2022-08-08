@@ -1,0 +1,46 @@
+.ModalButton {
+  background-color: #2d8ac6;
+  border: #2d8ac6;
+  font-weight: 600;
+  font-family: ‘Roboto’, sans-serif;
+}
+.ModalButton:hover {
+  background-color: #2d8ac6;
+  border: #2d8ac6;
+  outline: none;
+  box-shadow: none;
+}
+.ModalButton:focus {
+  background-color: #2d8ac6;
+  border: #2d8ac6;
+  outline: none;
+  box-shadow: none;
+}
+.userListTable {
+  font-family: ‘Roboto’, sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+}
+.userListTable tr {
+  height: 60px;
+  vertical-align: middle;
+  font-weight: 600;
+}
+.userListTableHead {
+  font-weight: 200;
+  height: 40px;
+  background-color: #f7f8fc;
+  font-family: ‘Roboto’, sans-serif;
+  font-size: 12px;
+}
+.ModalButtonCancel {
+  font-weight: 600;
+  font-family: ‘Roboto’, sans-serif;
+}
+.deleteIcon {
+  font-size: 50px;
+  cursor: pointer;
+}
+.modalTitle {
+  font-family: ‘Roboto’, sans-serif;
+}

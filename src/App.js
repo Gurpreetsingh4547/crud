@@ -1,29 +1,31 @@
 // Packages
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 
 // Components
-import View from "./View";
+import Views from "./Views/Routes";
+
+// Api request method to get users list from database
+import { getUserList } from "./services/users";
 
 /**
- * User Detaitls
+ * User Detials
  * actions :- Add New user and Delete User
  * @returns node
  */
 const App = () => {
+  // Destructuring to get the state from helper
+  const { userList } = getUserList();
   // state for storing userDetails that come in response data
   const [userData, setUserData] = useState([]);
 
-  // Send request to server to get the data
   useEffect(() => {
-    axios.get("http://localhost:8000/users/").then((res) => {
-      setUserData(res.data);
-    });
-  }, []);
+    // Set api response in state
+    setUserData(userList);
+  }, [userList]);
 
   return (
     <div className="App">
-      <View data={userData} updateData={setUserData} />
+      <Views data={userData} onUpdateData={setUserData} />
     </div>
   );
 };
